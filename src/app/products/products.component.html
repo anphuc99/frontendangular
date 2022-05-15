@@ -1,0 +1,66 @@
+<ng-container *ngIf="product != null">
+ <!-- Page Content -->
+ <div class="page-heading products-heading header-text">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="text-content">
+          <h4>new arrivals</h4>
+          <h2>sixteen products</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="products">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="filters">
+          <ul>
+              <li class="{{path == ''?'active':''}}" [routerLink]="['/product','']" (click)="cateOnClick('all',$event)">All Products</li>
+              <li *ngFor="let item of categogy" class="{{path == item.path?'active':''}}" [routerLink]="['/product',item.path]" (click)="cateOnClick(item.path,$event)" >{{item.name}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="filters-content">
+            <div class="row grid">
+
+                <div *ngFor="let item of product" class="col-lg-4 col-md-4 all">
+                  <div class="product-item">
+                    <a href="#"><img src="{{item.img}}" alt="" height="400"></a>
+                    <div class="down-content">
+                      <a [routerLink]="['/detail',item.detail]" ><h4>{{item.title}}</h4></a>
+                      <h6>${{item.price}}</h6>
+                      <p>{{item.summary}}</p>
+                      <ul class="stars">
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                      </ul>
+                      <span>Reviews (12)</span>
+                    </div>
+                  </div>
+                </div>
+
+
+            </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <ul class="pages">
+          <ng-container *ngIf="pageination != null && pageination.length >0">
+            <li *ngFor="let item of pageination"><a (click)="cateOnClick(path,$event,item.page)">{{item}}</a></li>
+            <li><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
+          </ng-container>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</ng-container>
